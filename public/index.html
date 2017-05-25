@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <head>
+    <title>Facebook Login</title>
+    <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css">
+    <style>
+      #fb-btn{margin-top:20px;}
+      #profile{display:none;}
+    </style>
+  </head>
+
+  <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '1466296366754853',
+          cookie: true,
+          xfbml: true,
+          version: 'v2.8'
+        });
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      function statusChangeCallback(response) {
+        if (response.status === 'connected') {
+          console.log('Logged in');
+          setElements(true);
+        } else {
+          console.log('not logged in');
+          setElements(false);
+        }
+      }
+
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
+
+      function setElements(isLoggedIn) {
+        if(isLoggedIn) {
+          document.getElementById('profile').style.display = 'block';
+          document.getElementById('fb-btn').style.display = 'none';
+        } else {
+          document.getElementById('profile').style.display = 'none';
+          document.getElementById('fb-btn').style.display = 'block';
+        }
+      }
+    </script>
+    <nav class="navbar navbar-default">
+     <div class="container">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="#">social Auth</a>
+       </div>
+       <div id="navbar" class="navbar-collapse collapse">
+         <ul class="nav navbar-nav">
+         <li><a href="index.html">Home</a><li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">Logout</a></li>
+          <li><a href="#" onclick="logout()">
+           <fb:login-button id="fb-btn" scope="public_profile,email,user_birthday" onlogin="checkLoginState();">
+           </fb:login-button>
+         </li>
+         </ul>
+       </div><!--/.navbar-collapse -->
+     </div>
+   </nav>
+   <div class="container">
+     <h3 id="heading">Log in to view your profile</h3>
+     <div id="profile"></div>
+   </div>
+
+  </body>
+
+</html>

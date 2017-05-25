@@ -1,0 +1,22 @@
+{
+  "name": "socialauth",
+  "version": "1.0.0",
+  "description": "Facebook Login with JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eelizan1/facebook_login.git"
+  },
+  "author": "Enrico",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eelizan1/facebook_login/issues"
+  },
+  "homepage": "https://github.com/eelizan1/facebook_login#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
